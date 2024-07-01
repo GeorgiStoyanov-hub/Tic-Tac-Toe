@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include "display.h"
 
+void displayMenu(){
+    printf("\nWelcome to TicTacToe!");
+    printf("\nPress 1 to start a new game.");
+    printf("\nPress 2 to see the score.");
+    printf("\nPress 3 to exit.\n");
+    printf("Command: ");
+}
+
 void displayBoard(Cell board[BOARD_SIZE][BOARD_SIZE]) {
     printf("\n");
     for (int i = 0; i < BOARD_SIZE; i++) {
@@ -36,4 +44,10 @@ void displayWinner(unsigned short winner) {
     else {
         printf("It's a draw!\n");
     }
+}
+
+void displayPoints(const score* points) {
+    printf("Points:\n");
+    printf("Player X: %.1lf\n", points->score_Player_X);
+    printf("Player O: %.1lf\n", points->score_Player_O);
 }

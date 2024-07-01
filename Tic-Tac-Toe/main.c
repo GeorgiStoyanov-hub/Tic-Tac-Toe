@@ -7,29 +7,52 @@
 int main() {
     Cell board[BOARD_SIZE][BOARD_SIZE];
     Cell currentPlayer = PLAYER_X;
-    int winner = 0;
+    unsigned short winner = 0;
+    unsigned short command = 0;
+    score points;
+    initializePoints(&points);
 
-    initializeBoard(board);
+    while (command != 3) {
 
-    while (!winner) {
-        displayBoard(board);
-        unsigned short row, col;
+        displayMenu();
 
-        getPlayerMove(&row, &col);
+        command = getCommand();
 
-        if (makeMove(board, row, col, currentPlayer)) {
-            winner = checkWinner(board);
-            if (!winner) {
-                currentPlayer = switchPlayer(currentPlayer);
+        if (command == 1) {
+            initializeBoard(board);
+
+            while (!winner) {
+                unsigned short row, col;
+
+                displayBoard(board);
+
+                getPlayerMove(&row, &col);
+
+                if (makeMove(board, row, col, currentPlayer)) {
+                    winner = checkWinner(board);
+                    if (winner) {
+                        addPoints(&points, winner);
+                    }
+                    currentPlayer = switchPlayer(currentPlayer);
+                }
+                else {
+                    printf("Invalid move! Try again.\n");
+                }
             }
+
+            displayBoard(board);
+            displayWinner(winner);
+        }
+        else if (command == 2)
+            displayPoints(&points);
+        else if (command == 3) {
+            printf("\nThank you for playing!\n");
+            return 0;
         }
         else {
-            printf("Invalid move! Try again.\n");
+            printf("\nInvalid input!\n");
         }
     }
-
-    displayBoard(board);
-    displayWinner(winner);
 
     return 0;
 }

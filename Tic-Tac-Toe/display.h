@@ -7,5 +7,7 @@
 
 void displayBoard(Cell board[BOARD_SIZE][BOARD_SIZE]);
 void displayWinner(unsigned short winner);
+void displayPoints(const score* points);
+void displayMenu();
 
 #endif

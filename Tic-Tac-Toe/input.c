@@ -2,8 +2,25 @@
 #include <stdio.h>
 #include "input.h"
 
+unsigned short getCommand() {
+    unsigned short command;
+        if (scanf("%hu", &command) == 1) {
+            if (command == 1 || command == 2 || command == 3) // 1 = New Game, 2 = Check Score 3 = Exit
+                return command;
+            else {
+                command = 4;
+                return command; // Invalid input
+            }
+        }
+        else {
+            command = 4;
+            while (getchar() != '\n');
+            return command; // Invalid input
+        }
+}
+
 void getPlayerMove(unsigned short* row, unsigned short* col) {
-    int validInput = 0;
+    unsigned short validInput = 0;
     while (!validInput) {
         printf("Enter your move (row and column): ");
         if (scanf("%hu %hu", row, col) == 2) {

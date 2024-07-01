@@ -5,6 +5,7 @@
 
 #include "logic.h"
 
+unsigned short getCommand();
 void getPlayerMove(unsigned short* row, unsigned short* col);
 Cell switchPlayer(Cell currentPlayer);
 
