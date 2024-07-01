@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "input.h"
 
+//vvv menu commands
 unsigned short getCommand() {
     unsigned short command;
         if (scanf("%hu", &command) == 1) {
